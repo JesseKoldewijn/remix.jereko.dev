@@ -81,7 +81,7 @@ const App = () => {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="!transition-colors !duration-300 !ease-linear">
         <RootLayout session={session.data}>
           <Outlet />
           <ScrollRestoration />
