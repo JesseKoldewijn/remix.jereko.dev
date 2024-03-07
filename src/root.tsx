@@ -12,6 +12,7 @@ import {
 import "~/styles/tailwind.css";
 
 import RootLayout from "./layout";
+import PwaIcons from "./meta/pwa-icons";
 import { commitSession, getSession } from "./sessions.server";
 
 export const links: LinksFunction = () => [
@@ -56,13 +57,8 @@ const App = () => {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" sizes="48x48"></link>
-        <link
-          rel="icon"
-          href="/favicon.svg"
-          sizes="any"
-          type="image/svg+xml"
-        ></link>
+        <PwaIcons />
+        <link rel="manifest" href="/meta/manifest.json" />
         <Meta />
         <Links />
       </head>

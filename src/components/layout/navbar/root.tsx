@@ -11,9 +11,12 @@ const Navbar = () => {
             Remix - Jereko
           </Link>
         </div>
-        <div className="z-10 hidden items-center justify-center sm:flex">
+        <div className="z-10 hidden items-center justify-center gap-4 sm:flex">
           <Link prefetch="intent" to="/">
             Home
+          </Link>
+          <Link prefetch="intent" to="/about">
+            About
           </Link>
         </div>
         <div className="z-10 flex items-center justify-center">
