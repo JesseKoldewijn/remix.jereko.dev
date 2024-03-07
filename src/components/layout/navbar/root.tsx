@@ -1,26 +1,27 @@
 import { Link } from "@remix-run/react";
 import ThemeToggle from "~/components/theme-toggle";
 
+import DesktopMenu from "./desktopMenu";
+import MobileMenu from "./mobileMenu";
+
 const Navbar = () => {
   return (
     <nav className="sticky inset-x-0 z-10 flex w-full">
       <div className="relative z-10 flex w-full items-center justify-between px-6 py-5">
         <div className="absolute inset-0 -z-[1] bg-background opacity-25" />
-        <div className="z-10 flex items-center justify-center">
+        <div className="z-10 flex items-center justify-center font-semibold">
           <Link prefetch="intent" to="/">
             Remix - Jereko
           </Link>
         </div>
-        <div className="z-10 hidden items-center justify-center gap-4 sm:flex">
-          <Link prefetch="intent" to="/">
-            Home
-          </Link>
-          <Link prefetch="intent" to="/about">
-            About
-          </Link>
-        </div>
-        <div className="z-10 flex items-center justify-center">
-          <ThemeToggle />
+        <DesktopMenu />
+        <div className="z-10 flex items-center justify-center gap-3">
+          <div className="hidden sm:flex">
+            <ThemeToggle />
+          </div>
+          <div className="sm:hidden">
+            <MobileMenu />
+          </div>
         </div>
       </div>
     </nav>
