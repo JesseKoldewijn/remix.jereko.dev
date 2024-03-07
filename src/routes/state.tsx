@@ -72,12 +72,23 @@ const State = () => {
       </div>
       <div className="flex flex-col items-center justify-center gap-4">
         <h1 className="text-2xl font-semibold">Server-side State</h1>
-        <div className="flex max-w-md flex-col flex-nowrap items-center justify-center gap-2 text-balance text-center md:text-pretty">
-          <span>Your theme is currently set to:</span>
-          <pre className="bg-foreground/10 w-max rounded-xl p-2 capitalize">
-            {session.theme}
-          </pre>
-          <i>
+        <div className="flex w-max max-w-md flex-col flex-nowrap items-center justify-center gap-2">
+          <span className="text-balance text-center md:text-pretty">
+            Your theme is currently set to:
+          </span>
+          <pre
+            className="bg-foreground/10 w-max max-w-md rounded-xl p-2"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(
+                {
+                  session,
+                },
+                null,
+                2,
+              ),
+            }}
+          />
+          <i className="text-balance text-center md:text-pretty">
             This value is stored in a httpOnly cookie which is also encrypted
             based on the server-side entryption key.
           </i>
@@ -90,13 +101,13 @@ const State = () => {
           based persistant state. Meaning parts of the user&apos;s session is
           stored inside a encrypted cookie and parts within their browser.
         </p>
-        <div className="flex max-w-md flex-col gap-2">
+        <div className="flex w-max max-w-md flex-col items-center justify-center gap-2">
           <span className="text-balance text-center md:text-pretty">
             Current persistant state value:
           </span>
           <pre
             ref={sessionStateDisplayRef}
-            className="bg-foreground/10 w-full rounded-xl p-2"
+            className="bg-foreground/10 w-max max-w-md rounded-xl p-2"
             dangerouslySetInnerHTML={{
               __html: JSON.stringify(
                 {
@@ -109,7 +120,7 @@ const State = () => {
             }}
           />
 
-          <div className="flex items-center gap-2">
+          <div className="flex w-full items-center gap-2">
             <Button
               onClick={incrementBarAndFoo}
               size="sm"
@@ -117,6 +128,7 @@ const State = () => {
               className="border-foreground/50 w-1/2"
             >
               <LuPlus className="h-6 w-6" />
+              <span className="sr-only">Increment Store Values</span>
             </Button>
             <Button
               onClick={resetStore}
