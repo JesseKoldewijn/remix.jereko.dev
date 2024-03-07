@@ -28,6 +28,7 @@ const MobileMenu = () => {
       <Button size="sm" asChild>
         <DrawerTrigger>
           <LuMenu className="h-6 w-6" />
+          <span className="sr-only">Open Navigation Menu</span>
         </DrawerTrigger>
       </Button>
       <DrawerContent>
