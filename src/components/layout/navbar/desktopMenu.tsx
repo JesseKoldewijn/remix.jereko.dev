@@ -10,8 +10,8 @@ const DesktopMenu = () => {
         </Link>
       </Button>
       <Button role="navigation" size="sm" asChild>
-        <Link prefetch="intent" to="/about">
-          About
+        <Link prefetch="intent" to="/state">
+          State
         </Link>
       </Button>
     </div>

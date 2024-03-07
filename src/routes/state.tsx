@@ -1,4 +1,6 @@
 import { MetaFunction } from "@remix-run/node";
+import { animate } from "motion";
+import { useRef } from "react";
 import { LuPlus, LuRefreshCcwDot } from "react-icons/lu";
 import { Button } from "~/components/ui/button";
 import { useSession } from "~/providers/SessionProvider";
@@ -15,7 +17,9 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-const About = () => {
+const State = () => {
+  const sessionStateDisplayRef = useRef<HTMLPreElement>(null);
+
   const { session } = useSession();
   const { persistant, session: sessionStore } = useCoreStore((store) => {
     const { persistant, session } = store;
@@ -35,21 +39,49 @@ const About = () => {
   const resetStore = useCoreStore((store) => store.resetStore);
 
   const incrementBarAndFoo = () => {
+    void animateValueChange();
     incrementFoo();
     incrementBar();
   };
 
+  const animateValueChange = async () => {
+    const ref = sessionStateDisplayRef.current;
+    if (ref) {
+      animate(
+        ref,
+        {
+          opacity: [1, 0.5, 1],
+          scale: [1, 0.95, 1],
+        },
+        {
+          duration: 0.5,
+          easing: "ease-in-out",
+        },
+      );
+    }
+  };
+
   return (
-    <div className="fixed inset-0 flex h-full w-full flex-col items-center justify-center gap-8 px-2">
+    <div className="hue fixed inset-0 flex h-full w-full flex-col items-center justify-center gap-8 px-2">
       <div className="flex flex-col items-center justify-center gap-4">
-        <h1 className="text-2xl font-semibold">Welcome to Remix - Jereko</h1>
+        <h1 className="text-2xl font-semibold">State in React.js / Remix.js</h1>
         <p className="max-w-md text-balance text-center md:text-pretty">
-          This is a Remix.js app with some nice tech I love to use like
-          Tailwind, TypeScript, and more.
+          On this page you&apos;ll see some server-side and client-side state
+          values and methods.
         </p>
-        <p className="max-w-md text-balance text-center md:text-pretty">
-          Your theme is currently set to: {session.theme}
-        </p>
+      </div>
+      <div className="flex flex-col items-center justify-center gap-4">
+        <h1 className="text-2xl font-semibold">Server-side State</h1>
+        <div className="flex max-w-md flex-col flex-nowrap items-center justify-center gap-2 text-balance text-center md:text-pretty">
+          <span>Your theme is currently set to:</span>
+          <pre className="bg-foreground/10 w-max rounded-xl p-2 capitalize">
+            {session.theme}
+          </pre>
+          <i>
+            This value is stored in a httpOnly cookie which is also encrypted
+            based on the server-side entryption key.
+          </i>
+        </div>
       </div>
       <div className="flex flex-col items-center justify-center gap-4">
         <h2 className="text-xl font-semibold">Zustand State Machine</h2>
@@ -62,16 +94,21 @@ const About = () => {
           <span className="text-balance text-center md:text-pretty">
             Current persistant state value:
           </span>
-          <pre className="bg-foreground/10 w-full rounded-xl p-2">
-            {JSON.stringify(
-              {
-                persistant,
-                session: sessionStore,
-              },
-              null,
-              2,
-            )}
-          </pre>
+          <pre
+            ref={sessionStateDisplayRef}
+            className="bg-foreground/10 w-full rounded-xl p-2"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(
+                {
+                  persistant,
+                  session: sessionStore,
+                },
+                null,
+                2,
+              ),
+            }}
+          />
+
           <div className="flex items-center gap-2">
             <Button
               onClick={incrementBarAndFoo}
@@ -97,4 +134,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default State;
