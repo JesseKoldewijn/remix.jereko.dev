@@ -58,7 +58,26 @@ const App = () => {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <PwaIcons />
-        <link rel="manifest" href="manifest.webmanifest" />
+
+        {process.env.NODE_ENV !== "development" && (
+          <>
+            <link rel="manifest" href="manifest.webmanifest" />
+            <script
+              async
+              defer
+              dangerouslySetInnerHTML={{
+                __html: `
+              if('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                  navigator.serviceWorker.register('/sw.js', { scope: '/' })
+                })
+              }
+            `,
+              }}
+            />
+          </>
+        )}
+
         <Meta />
         <Links />
       </head>

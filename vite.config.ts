@@ -17,8 +17,16 @@ export default defineConfig({
     }),
     VitePWA({
       manifest: manifest,
+      injectRegister: null,
+      registerType: "autoUpdate",
       workbox: {
-        globPatterns: ["**/*.{js,css,html}"],
+        cleanupOutdatedCaches: true,
+        globPatterns: ["*/*.*", "*.*"],
+
+        // Issue: https://github.com/vite-pwa/vite-plugin-pwa/issues/120
+        // Don't fallback on document based (e.g. `/some-page`) requests
+        // Even though this says `null` by default, setting this specifically to `null` to make it work
+        navigateFallback: null,
       },
     }),
   ],
