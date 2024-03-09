@@ -47,8 +47,15 @@ const MobileMenu = () => {
             </li>
             <li className="w-full">
               <Button className="w-full" size="sm" asChild>
-                <Link to="/about" onClick={handleLinkNavigation}>
-                  About
+                <Link to="/state" onClick={handleLinkNavigation}>
+                  State
+                </Link>
+              </Button>
+            </li>
+            <li className="w-full">
+              <Button className="w-full" size="sm" asChild>
+                <Link to="/a11y" onClick={handleLinkNavigation}>
+                  A11y
                 </Link>
               </Button>
             </li>
@@ -61,7 +68,7 @@ const MobileMenu = () => {
         </div>
         <DrawerFooter className="flex flex-row justify-center gap-2">
           <DrawerClose ref={closeBtnRef} asChild>
-            <Button className="border-foreground/50 w-full" variant="outline">
+            <Button className="w-full border-foreground/50" variant="outline">
               Close
             </Button>
           </DrawerClose>

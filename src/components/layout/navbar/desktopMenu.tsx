@@ -14,6 +14,11 @@ const DesktopMenu = () => {
           State
         </Link>
       </Button>
+      <Button role="navigation" size="sm" asChild>
+        <Link prefetch="intent" to="/a11y">
+          A11y
+        </Link>
+      </Button>
     </div>
   );
 };
