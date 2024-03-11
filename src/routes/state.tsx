@@ -62,7 +62,7 @@ const State = () => {
   };
 
   return (
-    <div className="hue fixed inset-0 flex h-full w-full flex-col items-center justify-center gap-8 px-2">
+    <div className="flex h-full min-h-screen w-full flex-col items-center justify-start gap-8 px-4 pb-20 pt-48">
       <div className="flex flex-col items-center justify-center gap-4">
         <h1 className="text-2xl font-semibold">State in React.js / Remix.js</h1>
         <p className="max-w-md text-balance text-center md:text-pretty">
@@ -77,7 +77,7 @@ const State = () => {
             Your theme is currently set to:
           </span>
           <pre
-            className="bg-foreground/10 w-max max-w-md rounded-xl p-2"
+            className="w-max max-w-md rounded-xl bg-foreground/10 p-2"
             dangerouslySetInnerHTML={{
               __html: JSON.stringify(
                 {
@@ -107,7 +107,7 @@ const State = () => {
           </span>
           <pre
             ref={sessionStateDisplayRef}
-            className="bg-foreground/10 w-max max-w-md rounded-xl p-2"
+            className="w-max max-w-md rounded-xl bg-foreground/10 p-2"
             dangerouslySetInnerHTML={{
               __html: JSON.stringify(
                 {
@@ -125,7 +125,7 @@ const State = () => {
               onClick={incrementBarAndFoo}
               size="sm"
               variant="outline"
-              className="border-foreground/50 w-1/2"
+              className="w-1/2 border-foreground/50"
             >
               <LuPlus className="h-6 w-6" />
               <span className="sr-only">Increment Store Values</span>
@@ -134,7 +134,7 @@ const State = () => {
               onClick={resetStore}
               size="sm"
               variant="outline"
-              className="border-foreground/50 w-1/2"
+              className="w-1/2 border-foreground/50"
             >
               <LuRefreshCcwDot className="h-6 w-6" />
               <span className="sr-only">Reset persistant store</span>

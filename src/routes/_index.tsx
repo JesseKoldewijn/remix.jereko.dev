@@ -47,12 +47,14 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
 const Index = () => {
   return (
-    <div className="fixed inset-0 flex h-full w-full flex-col items-center justify-center gap-4 px-2">
-      <h1 className="text-2xl font-semibold">Welcome to Remix - Jereko</h1>
-      <p className="max-w-md text-balance text-center md:text-pretty">
-        This is a Remix.js app with TailwindCSS, RadixUI, Typescript and some
-        other tech.
-      </p>
+    <div className="flex h-full min-h-screen w-full flex-col items-center justify-start gap-8 px-4">
+      <div className="fixed inset-0 flex flex-col items-center justify-center">
+        <h1 className="text-2xl font-semibold">Welcome to Remix - Jereko</h1>
+        <p className="max-w-md text-balance text-center md:text-pretty">
+          This is a Remix.js app with TailwindCSS, RadixUI, Typescript and some
+          other tech.
+        </p>
+      </div>
     </div>
   );
 };

@@ -13,7 +13,7 @@ const InteractiveElements = () => {
           Below are some examples of interactive elements and how to mark them
           appropriately. And also some examples of how not to do it.
         </p>
-        <div className="flex flex-col items-center justify-center gap-2">
+        <div className="flex max-w-[75vw] flex-col items-center justify-center gap-2 md:max-w-md lg:max-w-lg">
           <span className="text-lg font-medium">Good</span>
           <p className="max-w-md text-balance text-center md:text-pretty">
             {`The following examples are good because they use the correct role
@@ -25,19 +25,29 @@ const InteractiveElements = () => {
             <span className="font-mono">{"<a/>"}</span>
             {` tag.`}
           </p>
-          <code className="max-w-[75vw] overflow-auto text-nowrap rounded-md bg-foreground/10 p-2 md:max-w-md lg:max-w-lg">
-            {`<Link role="navigation" href="/some-url">...</Link>`}
+          <code className="flex w-full flex-col overflow-auto text-wrap rounded-md bg-foreground/10 p-2">
+            <span>{'<Link role="navigation" href="/some-url">'}</span>
+            <span className="pl-4">{"..."}</span>
+            <span className="pl-4">{'<span className="sr-only">'}</span>
+            <span className="pl-8"> {"Click me to go to the next page"}</span>
+            <span className="pl-4">{"</span>"}</span>
+            <span>{"</Link>"}</span>
           </code>
-          <code className="max-w-[75vw] overflow-auto text-nowrap rounded-md bg-foreground/10 p-2 md:max-w-md lg:max-w-lg">
-            {`<button role="navigation" onClick={callback}>...</button>`}
+          <code className="flex w-full flex-col overflow-auto text-wrap rounded-md bg-foreground/10 p-2">
+            <span>{'<Button role="navigation" onClick={callback}>'}</span>
+            <span className="pl-4">{"..."}</span>
+            <span className="pl-4">{'<span className="sr-only">'}</span>
+            <span className="pl-8"> {"Click me to go to do something"}</span>
+            <span className="pl-4">{"</span>"}</span>
+            <span>{"</Link>"}</span>
           </code>
         </div>
-        <div className="flex flex-col items-center justify-center gap-2">
+        <div className="flex max-w-[75vw] flex-col items-center justify-center gap-2 md:max-w-md lg:max-w-lg">
           <span className="text-lg font-medium">Bad</span>
-          <code className="max-w-[75vw] overflow-auto text-nowrap rounded-md bg-foreground/10 p-2 md:max-w-md lg:max-w-lg">
+          <code className="flex w-full overflow-auto text-nowrap rounded-md bg-foreground/10 p-2">
             {`<a href="#" onClick={callback}>...</a>`}
           </code>
-          <code className="max-w-[75vw] overflow-auto text-nowrap rounded-md bg-foreground/10 p-2 md:max-w-md lg:max-w-lg">
+          <code className="flex w-full overflow-auto text-nowrap rounded-md bg-foreground/10 p-2">
             {`<div onClick={callback}>...</div>`}
           </code>
         </div>

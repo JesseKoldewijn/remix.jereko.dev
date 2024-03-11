@@ -14,7 +14,7 @@ export const meta: MetaFunction = () => {
 
 const A11Y = () => {
   return (
-    <div className="hue fixed inset-0 flex h-full w-full flex-col items-center justify-center gap-8 px-2">
+    <div className="flex h-full min-h-screen w-full flex-col items-center justify-start gap-8 px-4 pb-20 pt-48">
       <div className="flex flex-col items-center justify-center gap-4">
         <h1 className="text-2xl font-semibold">Accessibility</h1>
         <p className="max-w-md text-balance text-center md:text-pretty">
